@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #0E3D4C;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .container h1 {
+            font-size: 4em;
+            color: #09222E;
+        }
+
+        .container p {
+            font-size: 1.5em;
+            color: #F85B5E;
+            margin-bottom: 20px;
+        }
+
+        .container .show-button {
+            background-color: #F85B5E;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .container .show-button:hover {
+            background-color: #f44449;
+        }
+
+        .shapes {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .shapes div {
+            width: 100px;
+            height: 100px;
+            margin: 0 10px;
+            background-color: #F85B5E;
+            border-radius: 50%;
+        }
+
+        .shapes .triangle {
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 100px solid #FFC107;
+            border-radius: 0;
+        }
+
+        .shapes .half-circle {
+            width: 100px;
+            height: 50px;
+            background-color: #09222E;
+            border-top-left-radius: 100px;
+            border-top-right-radius: 100px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #0E3D4C;
+            color: white;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1></h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="WebProg.html">World Wide Web</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="#">Menu</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>WELCOME</h1>
+        <p>TO OUR WEBSITE</p>
+        <p>We are thrilled to announce that our new site is under construction and will be launching soon.</p>
+        <button class="show-button">Show me</button>
+
+        <div class="shapes">
+            <div class="circle"></div>
+            <div class="half-circle"></div>
+            <div class="triangle"></div>
+        </div>
+    </div>
+
+    <footer>
+     
+    </footer>
+
+</body>
+</html>
