@@ -1,0 +1,68 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Style */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff; /* Black background */
+    color: #000000; /* White text */
+    line-height: 1.6;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header Styles */
+h1, h2, h3, h4 {
+    color: #ff0000; /* Red text for headers */
+    margin-bottom: 20px;
+}
+
+/* Paragraph Styles */
+p {
+    color: #090909; /* White text for paragraphs */
+    margin-bottom: 15px;
+}
+
+/* Link Styles */
+a {
+    color: #ff0000; /* Red links */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Button Styles */
+button {
+    background-color: #ff0000; /* Red button */
+    color: #000; /* Black text */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #cc0000; /* Darker red on hover */
+}
+
+/* Section Styles */
+section {
+    margin-bottom: 40px;
+    padding: 20px;
+    border: 1px solid #ff0000; /* Red border around sections */
+}
+
+/* Footer Style */
+footer {
+    text-align: center;
+    color: #d11e1e; /* Red text for footer */
+    padding: 20px 0;
+}
