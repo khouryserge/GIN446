@@ -4,9 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>World Wide Web Overview</title>
-   
-
     <link rel="stylesheet" href="Styles.css">
+    <style>
+        /* Add this style to your existing CSS or inside a <style> tag */
+        .image-container {
+            display: flex; /* Use flexbox to arrange images in a row */
+            gap: 120px; /* Adjust the gap to increase separation between images */
+            margin-top: 40px; /* Add some space above the images */
+        }
+    </style>
 </head>
 <body style="padding-left: 20px;">
      
@@ -16,25 +22,33 @@
             <li><a href="#security">Security Issues</a></li>
             <li><a href="#mobile-first">Mobile-First Development</a></li>
             <li><a href="#internet-stats">Internet Stats in the Middle East</a></li>
-            <li><a href="#Evolution of tags"</li>Evolution of Tags in HTML</a></li>
+            <li><a href="#evolution-tags">Evolution of Tags in HTML</a></li> <!-- Fixed id for consistency -->
         </ul>
     </nav>
+    
     <!-- History of the World Wide Web Section -->
     <section id="history">
-    <h2>History of the World Wide Web</h2>
+        <h2>History of the World Wide Web</h2>
     
+        <h3>1. Inception of the World Wide Web (1989-1993)</h3>
+    
+        <div>
+            <p>
+                The World Wide Web was invented by <strong>Tim Berners-Lee</strong> in 1989 while working at CERN. His vision was to create a system that allowed researchers to share information more easily. He developed three fundamental technologies:
+            </p>
+            <ul>
+                <li><strong>HTML</strong> (HyperText Markup Language): A language to create web pages.</li>
+                <li><strong>URL</strong> (Uniform Resource Locator): A system for assigning web addresses.</li>
+                <li><strong>HTTP</strong> (Hypertext Transfer Protocol): A method for transferring data across the web.</li>
+            </ul>
+            <p>Reference: <a href="https://home.cern/science/computing/birth-web" target="_blank">CERN. (n.d.). The birth of the Web</a>.</p>
+        </div>
 
-    <h3>1. Inception of the World Wide Web (1989-1993)</h3>
-    <p>
-        The World Wide Web was invented by <strong>Tim Berners-Lee</strong> in 1989 while working at CERN. His vision was to create a system that allowed researchers to share information more easily. He developed three fundamental technologies:
-        <ul>
-            <li><strong>HTML</strong> (HyperText Markup Language): A language to create web pages.</li>
-            <li><strong>URL</strong> (Uniform Resource Locator): A system for assigning web addresses.</li>
-            <li><strong>HTTP</strong> (Hypertext Transfer Protocol): A method for transferring data across the web.</li>
-        </ul>
-    </p>
-    <p>Reference: <a href="https://home.cern/science/computing/birth-web" target="_blank">CERN. (n.d.). The birth of the Web</a>.</p>
-
+        <div class="image-container">
+            <img src="timbernerslee.jpg" alt="Tim Berners-Lee" width="200" height="200">
+            <img src="HTML5pic.png" alt="HTML5 Illustration" width="200" height="200">
+            <img src="WWW.jpeg" alt="WWW" width="200" height="200">
+        </div>
     <h3>2. Growth of the Web (1993-2000)</h3>
     <p>
         After its release, the Web quickly expanded with the launch of <strong>Mosaic</strong> (1993), the first graphical web browser, followed by <strong>Netscape Navigator</strong> (1994). Microsoft entered the scene with <strong>Internet Explorer</strong> in 1995, leading to the "browser wars."
@@ -339,6 +353,7 @@
  </section>
     <footer>
         <p><a href="#history">Back to History of the Web</a> | <a href="#security">Back to Security Issues</a></p>
+        
     </footer>
 
 </html>

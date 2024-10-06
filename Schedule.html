@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My University Schedule</title>
+    <link rel="stylesheet" href="Styles.css"> <!-- Link to your external CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4; /* Light background color */
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #0D3B66; /* Navy blue */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0; /* Margin above and below the table */
+            background-color: #fff; /* White background for the table */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow for a nice effect */
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #ddd; /* Light border for table cells */
+        }
+
+        th {
+            background-color: #0D3B66; /* Navy blue for header */
+            color: white; /* White text for header */
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2; /* Light grey for alternate rows */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>My University Schedule</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th>Time</th>
+                <th>Course</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="2">Monday</td> <!-- Merged cell for Monday -->
+                <td>11:00 AM - 12:15 PM</td>
+                <td>Maths for Engineers</td>
+                
+            </tr>
+            <tr>
+                <td>12:30 PM - 1:45 PM</td>
+                <td>Electrostatics</td>
+                
+            </tr>
+            <tr>
+                <td rowspan="4">Tuesday</td> <!-- Merged cell for Tuesday -->
+                <td>9:00 AM - 10:15 AM</td>
+                <td>Football</td>
+               
+            </tr>
+            <tr>
+                <td>11:00 AM - 12:15 PM</td>
+                <td>Electrostatics</td>
+                
+            </tr>
+            <tr>
+                <td>3:30 PM - 4:45 PM</td>
+                <td>Algorithmics</td>
+            
+            </tr>
+            <tr>
+                <td>5:00 PM - 6:15 PM</td>
+                <td>Web Programming</td>
+               
+            </tr>
+            <tr>
+                <td rowspan="2">Thursday</td> <!-- Merged cell for Thursday -->
+                <td>11:00 AM - 12:15 PM</td>
+                <td>Electrostatics</td>
+               
+            </tr>
+            <tr>
+                <td>5:00 PM - 6:15 PM</td>
+                <td>Algorithmics</td> <!-- Changed to Algorithmics on Thursday -->
+                
+            </tr>
+            <tr>
+                <td rowspan="2">Friday</td> <!-- Merged cell for Friday -->
+                <td>11:00 AM - 12:15 PM</td>
+                <td>Maths for Engineers</td>
+              
+            </tr>
+            <tr>
+                <td>12:30 PM - 3:15 PM</td>
+                <td>Microprocessors</td>
+                
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
