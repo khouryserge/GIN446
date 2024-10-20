@@ -66,3 +66,72 @@ footer {
     color: #0D3B66; /* Red text for footer */
     padding: 20px 0;
 }
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Style */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff; /* Black background */
+    color: #000000; /* White text */
+    line-height: 1.6;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+/* Header Styles */
+h1, h2, h3, h4 {
+    color: #0D3B66; /* Red text for headers */
+    margin-bottom: 20px;
+}
+
+/* Paragraph Styles */
+p {
+    color: #090909; /* White text for paragraphs */
+    margin-bottom: 15px;
+}
+
+/* Link Styles */
+a {
+    color: #0D3B66; /* Red links */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Button Styles */
+button {
+    background-color: #0D3B66; /* Red button */
+    color: #000; /* Black text */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px; /* Added rounded corners */
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0D3B66; /* Darker red on hover */
+}
+
+/* Section Styles */
+section {
+    margin-bottom: 40px;
+    padding: 20px;
+    border: 1px solid #0D3B66; /* Red border around sections */
+    border-radius: 15px; /* Added rounded corners */
+}
+
+/* Footer Style */
+footer {
+    text-align: center;
+    color: #0D3B66; /* Red text for footer */
+    padding: 20px 0;
+    border-radius: 10px; /* Added rounded corners */
+}

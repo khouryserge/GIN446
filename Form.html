@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dynamic CV Generator</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+#cvFormContainer {
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+input[type="text"], input[type="email"], textarea {
+    width: 100%;
+    margin: 10px 0;
+    padding: 8px;
+    box-sizing: border-box;
+}
+</style>
+<script>
+let currentStep = 0;
+
+function nextStep() {
+    const steps = document.getElementsByClassName('form-step');
+    if (currentStep < steps.length - 1) {
+        steps[currentStep].style.display = 'none';
+        currentStep++;
+        steps[currentStep].style.display = 'block';
+    }
+}
+
+function generateCV() {
+    // Get form values
+    const name = document.getElementById("name").value;
+    const address = document.getElementById("address").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+    const skills = document.getElementById("skills").value.split(',');
+    const languages = document.getElementById("languages").value.split(',');
+    const education = document.getElementById("education").value;
+    const profile = document.getElementById("profile").value;
+    
+    // Insert values into the CV template
+    document.getElementById("cvName").innerText = name;
+    document.getElementById("cvAddress").innerText = address;
+    document.getElementById("cvEmail").innerText = email;
+    document.getElementById("cvPhone").innerText = phone;
+    document.getElementById("cvProfile").innerText = profile;
+    document.getElementById("cvEducation").innerText = education;
+
+    // Insert skills
+    const skillsContainer = document.getElementById("cvSkills");
+    skillsContainer.innerHTML = "";
+    skills.forEach(skill => {
+        let skillElement = document.createElement("p");
+        skillElement.innerText = skill;
+        skillsContainer.appendChild(skillElement);
+    });
+
+    // Insert languages
+    const languagesContainer = document.getElementById("cvLanguages");
+    languagesContainer.innerHTML = "";
+    languages.forEach(language => {
+        let langElement = document.createElement("p");
+        langElement.innerText = language;
+        languagesContainer.appendChild(langElement);
+    });
+
+    // Show the generated CV
+    document.getElementById("formContainer").style.display = "none";
+    document.getElementById("cvContainer").style.display = "block";
+}
+</script>
+</head>
+<body class="w3-light-grey">
+
+<!-- Form Container -->
+<div id="formContainer" class="w3-content w3-margin-top" style="max-width:700px;">
+  <div id="cvFormContainer" class="w3-white w3-text-grey w3-card-4">
+    <div class="w3-container w3-padding">
+      <h2>Enter Your Information</h2>
+      <form id="cvForm">
+        <div class="form-step" style="display:block;">
+          <p><label>Name</label><input class="w3-input w3-border" type="text" id="name" required></p>
+          <p><button type="button" class="w3-button w3-teal" onclick="nextStep()">Next</button></p>
+        </div>
+        <div class="form-step" style="display:none;">
+          <p><label>Address</label><input class="w3-input w3-border" type="text" id="address" required></p>
+          <p><button type="button" class="w3-button w3-teal" onclick="nextStep()">Next</button></p>
+        </div>
+        <div class="form-step" style="display:none;">
+          <p><label>Email</label><input class="w3-input w3-border" type="email" id="email" required></p>
+          <p><button type="button" class="w3-button w3-teal" onclick="nextStep()">Next</button></p>
+        </div>
+        <div class="form-step" style="display:none;">
+          <p><label>Phone</label><input class="w3-input w3-border" type="text" id="phone" required></p>
+          <p><button type="button" class="w3-button w3-teal" onclick="nextStep()">Next</button></p>
+        </div>
+        <div class="form-step" style="display:none;">
+          <p><label>Profile Description</label><textarea class="w3-input w3-border" id="profile" required></textarea></p>
+          <p><button type="button" class="w3-button w3-teal" onclick="nextStep()">Next</button></p>
+        </div>
+        <div class="form-step" style="display:none;">
+          <p><label>Skills (comma separated)</label><input class="w3-input w3-border" type="text" id="skills" required></p>
+          <p><button type="button" class="w3-button w3-teal" onclick="nextStep()">Next</button></p>
+        </div>
+        <div class="form-step" style="display:none;">
+          <p><label>Languages (comma separated)</label><input class="w3-input w3-border" type="text" id="languages" required></p>
+          <p><button type="button" class="w3-button w3-teal" onclick="nextStep()">Next</button></p>
+        </div>
+        <div class="form-step" style="display:none;">
+          <p><label>Education</label><textarea class="w3-input w3-border" id="education" required></textarea></p>
+          <p><button type="button" class="w3-button w3-teal" onclick="generateCV()">Generate CV</button></p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Generated CV Container -->
+<div id="cvContainer" class="w3-content w3-margin-top" style="max-width:1400px; display:none;">
+  <div class="w3-row-padding">
+    <div class="w3-third">
+      <div class="w3-white w3-text-grey w3-card-4">
+        <div class="w3-display-container">
+          
+          <div class="w3-display-bottomleft w3-container w3-text-white">
+            <h2 id="cvName">Your Name</h2>
+          </div>
+        </div>
+        <div class="w3-container">
+          <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i><span id="cvAddress">Your Address</span></p>
+          <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i><span id="cvEmail">Your Email</span></p>
+          <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i><span id="cvPhone">Your Phone</span></p>
+          <hr>
+          <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Skills</b></p>
+          <div id="cvSkills"></div>
+          <br>
+          <p class="w3-large w3-text-theme"><b><i class="fa fa-globe fa-fw w3-margin-right w3-text-teal"></i>Languages</b></p>
+          <div id="cvLanguages"></div>
+          <br>
+        </div>
+      </div><br>
+    </div>
+    <div class="w3-twothird">
+      <div class="w3-container w3-card w3-white w3-margin-bottom">
+        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Education and Profile</h2>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b>Profile</b></h5>
+          <p id="cvProfile">Your profile description here</p>
+          <hr>
+        </div>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b>Education</b></h5>
+          <p id="cvEducation">Your education details here</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

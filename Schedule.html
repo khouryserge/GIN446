@@ -1,116 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My University Schedule</title>
-    <link rel="stylesheet" href="Styles.css"> <!-- Link to your external CSS -->
+    <title>Weekly Schedule</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4; /* Light background color */
-            padding: 20px;
-        }
+    body {
+    font-family: Arial, sans-serif;
+}
 
-        h1 {
-            text-align: center;
-            color: #0D3B66; /* Navy blue */
-        }
+.timetable {
+    display: grid;
+    grid-template-columns: 10% repeat(5, 1fr);
+    grid-template-rows: 50px repeat(9, 70px);
+    gap: 0;
+    max-width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    border: 2px solid black; /* Border around the entire timetable */
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0; /* Margin above and below the table */
-            background-color: #fff; /* White background for the table */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow for a nice effect */
-        }
+.day {
+    grid-row: 1;
+    text-align: center;
+    font-weight: bold;
+    color: black;
+    border: 1px solid black; /* Border for each day cell */
+    padding: 10px;
+}
 
-        th, td {
-            padding: 15px;
-            text-align: left;
-            border: 1px solid #ddd; /* Light border for table cells */
-        }
+.time {
+    text-align: right;
+    padding-right: 10px;
+    font-weight: bold;
+    border: 1px solid black; /* Border for each time cell */
+    padding-top: 20px;
+    border-bottom: 1px solid black; /* Added horizontal border */
+}
 
-        th {
-            background-color: #0D3B66; /* Navy blue for header */
-            color: white; /* White text for header */
-        }
+.class {
+    border-radius: 10px;
+    padding: 5px;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s;
+    border: 1px solid black; /* Border for each class cell */
+}
 
-        tr:nth-child(even) {
-            background-color: #f2f2f2; /* Light grey for alternate rows */
-        }
+.class:hover {
+    transform: scale(1.05);
+}
+
+.empty-slot {
+    background-color: transparent;
+    border: 1px solid black; /* Border for empty slots */
+}
+
+.monday, .tuesday, .wednesday, .thursday, .friday {
+    border: 1px solid black; /* Ensure each day column has a border */
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #181212;
+    width: 50%;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
     </style>
 </head>
+
 <body>
+    
+    <div class="timetable">
+        <!-- Days -->
+        <div class="day">Time</div>
+        <div class="day monday">Monday</div>
+        <div class="day tuesday">Tuesday</div>
+        <div class="day wednesday">Wednesday</div>
+        <div class="day thursday">Thursday</div>
+        <div class="day friday">Friday</div>
 
-    <h1>My University Schedule</h1>
+        <!-- Times -->
+        <div class="time" style="grid-row: 2;">11AM</div>
+        <div class="time" style="grid-row: 3;">12PM</div>
+        <div class="time" style="grid-row: 4;">1PM</div>
+        <div class="time" style="grid-row: 5;">2PM</div>
+        <div class="time" style="grid-row: 6;">3PM</div>
+        <div class="time" style="grid-row: 7;">4PM</div>
+        <div class="time" style="grid-row: 8;">5PM</div>
+        <div class="time" style="grid-row: 9;">6PM</div>
+        <div class="time" style="grid-row: 10;">7PM</div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Day</th>
-                <th>Time</th>
-                <th>Course</th>
-               
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td rowspan="2">Monday</td> <!-- Merged cell for Monday -->
-                <td>11:00 AM - 12:15 PM</td>
-                <td>Maths for Engineers</td>
-                
-            </tr>
-            <tr>
-                <td>12:30 PM - 1:45 PM</td>
-                <td>Electrostatics</td>
-                
-            </tr>
-            <tr>
-                <td rowspan="4">Tuesday</td> <!-- Merged cell for Tuesday -->
-                <td>9:00 AM - 10:15 AM</td>
-                <td>Football</td>
-               
-            </tr>
-            <tr>
-                <td>11:00 AM - 12:15 PM</td>
-                <td>Electrostatics</td>
-                
-            </tr>
-            <tr>
-                <td>3:30 PM - 4:45 PM</td>
-                <td>Algorithmics</td>
-            
-            </tr>
-            <tr>
-                <td>5:00 PM - 6:15 PM</td>
-                <td>Web Programming</td>
-               
-            </tr>
-            <tr>
-                <td rowspan="2">Thursday</td> <!-- Merged cell for Thursday -->
-                <td>11:00 AM - 12:15 PM</td>
-                <td>Electrostatics</td>
-               
-            </tr>
-            <tr>
-                <td>5:00 PM - 6:15 PM</td>
-                <td>Algorithmics</td> <!-- Changed to Algorithmics on Thursday -->
-                
-            </tr>
-            <tr>
-                <td rowspan="2">Friday</td> <!-- Merged cell for Friday -->
-                <td>11:00 AM - 12:15 PM</td>
-                <td>Maths for Engineers</td>
-              
-            </tr>
-            <tr>
-                <td>12:30 PM - 3:15 PM</td>
-                <td>Microprocessors</td>
-                
-            </tr>
-        </tbody>
-    </table>
+        <!-- Monday Classes -->
+        <div class="class monday" style="grid-row: 2; background-color: rgb(70, 70, 175);" onclick="showClassInfo('Math For Eng', '11:00AM-12:15PM', 'This class covers advanced engineering mathematics.')">
+            Math For Engineers<br>11:00AM-12:15PM
+        </div>
+        <div class="empty-slot monday" style="grid-row: 3 / span 8;"></div>
 
+        <!-- Tuesday Classes -->
+        <div class="class tuesday" style="grid-row: 2; background-color: rgb(39, 182, 56);" onclick="showClassInfo('Electrostatics', '11:00AM-12:15PM', 'This class is about electric charges and fields.')">
+            Electrostatics and Magnetism<br>11:00AM-12:15PM
+        </div>
+        <div class="empty-slot tuesday" style="grid-row: 3 / span 3;"></div>
+        <div class="class tuesday" style="grid-row: 6; background-color: rgb(178, 59, 59);" onclick="showClassInfo('Algo', '3:30PM-4:45PM', 'This class focuses on algorithms and data structures.')">
+            Algorithmics<br>3:30PM-4:45PM
+        </div>
+        <div class="class tuesday" style="grid-row: 7; background-color: rgb(158, 72, 138);" onclick="showClassInfo('Web', '5:00PM-6:15PM', 'This class covers web development technologies.')">
+            Web Programming<br>5:00PM-6:15PM
+        </div>
+        <div class="empty-slot tuesday" style="grid-row: 8 / span 3;"></div>
+
+        <!-- Wednesday Empty Slots -->
+        <div class="empty-slot wednesday" style="grid-row: 2 / span 9;"></div>
+
+        <!-- Thursday Classes -->
+        <div class="class thursday" style="grid-row: 2; background-color: rgb(39, 182, 56);" onclick="showClassInfo('Electrostatics', '11:00AM-12:15PM', 'This class is about electric charges and fields.')">
+            Electrostatics and Magnetism<br>11:00AM-12:15PM
+        </div>
+        <div class="empty-slot thursday" style="grid-row: 3 / span 3;"></div>
+        <div class="class thursday" style="grid-row: 6; background-color: rgb(178, 59, 59);" onclick="showClassInfo('Algo', '3:30PM-4:45PM', 'This class focuses on algorithms and data structures.')">
+            Algorithmics<br>3:30PM-4:45PM
+        </div>
+        <div class="class thursday" style="grid-row: 7; background-color: rgb(158, 72, 138);" onclick="showClassInfo('Web', '5:00PM-6:15PM', 'This class covers web development technologies.')">
+            Web Programming<br>5:00PM-6:15PM
+        </div>
+        <div class="empty-slot thursday" style="grid-row: 8 / span 3;"></div>
+
+        <!-- Friday Classes -->
+        <div class="class friday" style="grid-row: 2; background-color: rgb(70, 70, 175);" onclick="showClassInfo('Math For Eng', '11:00AM-12:15PM', 'This class covers advanced engineering mathematics.')">
+            Math For Engineers<br>11:00AM-12:15PM
+        </div>
+        <div class="empty-slot friday" style="grid-row: 3;"></div>
+        <div class="class friday" style="grid-row: 4; background-color: rgb(215, 226, 11);" onclick="showClassInfo('Micro', '12:30PM-1:45PM', 'This class introduces the basics of microcontrollers.')">
+            Microprocessors<br>12:30PM-1:45PM
+        </div>
+        <div class="class friday" style="grid-row: 5; background-color: rgb(215, 226, 11);" onclick="showClassInfo('Micro', '2:00PM-3:15PM', 'Continuation of microcontroller basics.')">
+            Microprocessors<br>2:00PM-3:15PM
+        </div>
+        <div class="empty-slot friday" style="grid-row: 6 / span 5;"></div>
+    </div>
+
+    <!-- Modal -->
+    <div id="classModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="classTitle"></h2>
+            <p id="classTime"></p>
+            <p id="classDescription"></p>
+        </div>
+    </div>
+
+    <script>
+        function showClassInfo(title, time, description) {
+            document.getElementById("classTitle").innerText = title;
+            document.getElementById("classTime").innerText = time;
+            document.getElementById("classDescription").innerText = description;
+            document.getElementById("classModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("classModal").style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == document.getElementById("classModal")) {
+                closeModal();
+            }
+        }
+    </script>
 </body>
+
 </html>
