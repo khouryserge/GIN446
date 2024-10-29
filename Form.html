@@ -9,8 +9,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+
+
 #cvFormContainer {
-    width: 300px;
+    width: 400px;
+    height: 400px;
     margin: 50px auto;
     padding: 20px;
     border: 1px solid #ccc;
@@ -78,8 +81,19 @@ function generateCV() {
 }
 </script>
 </head>
-<body class="w3-light-grey">
+<body class=" w3-white">
+  <div class="w3-top">
+    <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
+      <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+      <a href="index.html" class="w3-bar-item w3-button w3-theme-l1" style="color: black;">Home</a>
 
+      <a href="MyCV.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white" style="color: black;">About</a>
+<a href="Schedule.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white" style="color: black;">Schedule</a>
+<a href="Form.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white" style="color: black;">Form</a>
+
+     
+    </div>
+  </div>
 <!-- Form Container -->
 <div id="formContainer" class="w3-content w3-margin-top" style="max-width:700px;">
   <div id="cvFormContainer" class="w3-white w3-text-grey w3-card-4">
@@ -124,7 +138,7 @@ function generateCV() {
 </div>
 
 <!-- Generated CV Container -->
-<div id="cvContainer" class="w3-content w3-margin-top" style="max-width:1400px; display:none;">
+<div id="cvContainer" class="w3-content w3-margin-top" style="max-width:2000px; display:none;padding-top: 60px;">
   <div class="w3-row-padding">
     <div class="w3-third">
       <div class="w3-white w3-text-grey w3-card-4">

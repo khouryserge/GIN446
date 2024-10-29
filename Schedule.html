@@ -1,208 +1,280 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weekly Schedule</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
+<title>Weekly Schedule</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
     body {
-    font-family: Arial, sans-serif;
-}
-
-.timetable {
-    display: grid;
-    grid-template-columns: 10% repeat(5, 1fr);
-    grid-template-rows: 50px repeat(9, 70px);
-    gap: 0;
-    max-width: 100%;
-    margin: 20px auto;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    position: relative;
-    border: 2px solid black; /* Border around the entire timetable */
-}
-
-.day {
-    grid-row: 1;
-    text-align: center;
-    font-weight: bold;
-    color: black;
-    border: 1px solid black; /* Border for each day cell */
-    padding: 10px;
-}
-
-.time {
-    text-align: right;
-    padding-right: 10px;
-    font-weight: bold;
-    border: 1px solid black; /* Border for each time cell */
-    padding-top: 20px;
-    border-bottom: 1px solid black; /* Added horizontal border */
-}
-
-.class {
-    border-radius: 10px;
-    padding: 5px;
-    color: white;
-    cursor: pointer;
-    transition: transform 0.3s;
-    border: 1px solid black; /* Border for each class cell */
-}
-
-.class:hover {
-    transform: scale(1.05);
-}
-
-.empty-slot {
-    background-color: transparent;
-    border: 1px solid black; /* Border for empty slots */
-}
-
-.monday, .tuesday, .wednesday, .thursday, .friday {
-    border: 1px solid black; /* Ensure each day column has a border */
-}
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    overflow: auto;
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #181212;
-    width: 50%;
-    border-radius: 10px;
-    text-align: center;
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-
-    </style>
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+        background-color: #f0f0f0;
+        padding-top: 40px;
+    }
+    #scheduleCanvas {
+        border: 2px solid black;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+        margin-top: 20px;
+    }
+    .tooltip {
+        position: fixed;
+        background-color: #ffffff;
+        border: 1px solid #cccccc;
+        padding: 5px;
+        display: none;
+    }
+    #eventForm {
+        margin-top: 10px;
+    }
+</style>
 </head>
+<body class="w3-light-grey">
 
-<body>
-    
-    <div class="timetable">
-        <!-- Days -->
-        <div class="day">Time</div>
-        <div class="day monday">Monday</div>
-        <div class="day tuesday">Tuesday</div>
-        <div class="day wednesday">Wednesday</div>
-        <div class="day thursday">Thursday</div>
-        <div class="day friday">Friday</div>
-
-        <!-- Times -->
-        <div class="time" style="grid-row: 2;">11AM</div>
-        <div class="time" style="grid-row: 3;">12PM</div>
-        <div class="time" style="grid-row: 4;">1PM</div>
-        <div class="time" style="grid-row: 5;">2PM</div>
-        <div class="time" style="grid-row: 6;">3PM</div>
-        <div class="time" style="grid-row: 7;">4PM</div>
-        <div class="time" style="grid-row: 8;">5PM</div>
-        <div class="time" style="grid-row: 9;">6PM</div>
-        <div class="time" style="grid-row: 10;">7PM</div>
-
-        <!-- Monday Classes -->
-        <div class="class monday" style="grid-row: 2; background-color: rgb(70, 70, 175);" onclick="showClassInfo('Math For Eng', '11:00AM-12:15PM', 'This class covers advanced engineering mathematics.')">
-            Math For Engineers<br>11:00AM-12:15PM
-        </div>
-        <div class="empty-slot monday" style="grid-row: 3 / span 8;"></div>
-
-        <!-- Tuesday Classes -->
-        <div class="class tuesday" style="grid-row: 2; background-color: rgb(39, 182, 56);" onclick="showClassInfo('Electrostatics', '11:00AM-12:15PM', 'This class is about electric charges and fields.')">
-            Electrostatics and Magnetism<br>11:00AM-12:15PM
-        </div>
-        <div class="empty-slot tuesday" style="grid-row: 3 / span 3;"></div>
-        <div class="class tuesday" style="grid-row: 6; background-color: rgb(178, 59, 59);" onclick="showClassInfo('Algo', '3:30PM-4:45PM', 'This class focuses on algorithms and data structures.')">
-            Algorithmics<br>3:30PM-4:45PM
-        </div>
-        <div class="class tuesday" style="grid-row: 7; background-color: rgb(158, 72, 138);" onclick="showClassInfo('Web', '5:00PM-6:15PM', 'This class covers web development technologies.')">
-            Web Programming<br>5:00PM-6:15PM
-        </div>
-        <div class="empty-slot tuesday" style="grid-row: 8 / span 3;"></div>
-
-        <!-- Wednesday Empty Slots -->
-        <div class="empty-slot wednesday" style="grid-row: 2 / span 9;"></div>
-
-        <!-- Thursday Classes -->
-        <div class="class thursday" style="grid-row: 2; background-color: rgb(39, 182, 56);" onclick="showClassInfo('Electrostatics', '11:00AM-12:15PM', 'This class is about electric charges and fields.')">
-            Electrostatics and Magnetism<br>11:00AM-12:15PM
-        </div>
-        <div class="empty-slot thursday" style="grid-row: 3 / span 3;"></div>
-        <div class="class thursday" style="grid-row: 6; background-color: rgb(178, 59, 59);" onclick="showClassInfo('Algo', '3:30PM-4:45PM', 'This class focuses on algorithms and data structures.')">
-            Algorithmics<br>3:30PM-4:45PM
-        </div>
-        <div class="class thursday" style="grid-row: 7; background-color: rgb(158, 72, 138);" onclick="showClassInfo('Web', '5:00PM-6:15PM', 'This class covers web development technologies.')">
-            Web Programming<br>5:00PM-6:15PM
-        </div>
-        <div class="empty-slot thursday" style="grid-row: 8 / span 3;"></div>
-
-        <!-- Friday Classes -->
-        <div class="class friday" style="grid-row: 2; background-color: rgb(70, 70, 175);" onclick="showClassInfo('Math For Eng', '11:00AM-12:15PM', 'This class covers advanced engineering mathematics.')">
-            Math For Engineers<br>11:00AM-12:15PM
-        </div>
-        <div class="empty-slot friday" style="grid-row: 3;"></div>
-        <div class="class friday" style="grid-row: 4; background-color: rgb(215, 226, 11);" onclick="showClassInfo('Micro', '12:30PM-1:45PM', 'This class introduces the basics of microcontrollers.')">
-            Microprocessors<br>12:30PM-1:45PM
-        </div>
-        <div class="class friday" style="grid-row: 5; background-color: rgb(215, 226, 11);" onclick="showClassInfo('Micro', '2:00PM-3:15PM', 'Continuation of microcontroller basics.')">
-            Microprocessors<br>2:00PM-3:15PM
-        </div>
-        <div class="empty-slot friday" style="grid-row: 6 / span 5;"></div>
+<div class="w3-top">
+    <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
+        <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-black w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+        <a href="index.html" class="w3-bar-item w3-button w3-theme-l1 w3-hover-black">Home</a>
+        <a href="MyCV.html" class="w3-bar-item w3-button w3-hide-small w3-hover-black">About</a>
+        <a href="Schedule.html" class="w3-bar-item w3-button w3-hide-small w3-hover-black">Schedule</a>
+        <a href="Form.html" class="w3-bar-item w3-button w3-hide-small w3-hover-black">Form</a>
+        <button onclick="openAddEventForm()" class="w3-bar-item w3-button w3-hide-small w3-hover-black" style="margin-left: auto;">Add Event</button>
     </div>
+</div>
 
-    <!-- Modal -->
-    <div id="classModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2 id="classTitle"></h2>
-            <p id="classTime"></p>
-            <p id="classDescription"></p>
-        </div>
-    </div>
+<canvas id="scheduleCanvas" width="900" height="600"></canvas>
+<div id="tooltip" class="tooltip"></div>
 
-    <script>
-        function showClassInfo(title, time, description) {
-            document.getElementById("classTitle").innerText = title;
-            document.getElementById("classTime").innerText = time;
-            document.getElementById("classDescription").innerText = description;
-            document.getElementById("classModal").style.display = "block";
+<div id="eventForm" style="display:none;">
+    <label for="daySelect">Day:</label>
+    <select id="daySelect">
+        <option value="1">Monday</option>
+        <option value="2">Tuesday</option>
+        <option value="3">Wednesday</option>
+        <option value="4">Thursday</option>
+        <option value="5">Friday</option>
+    </select>
+    <label for="timeSelect">Time Slot:</label>
+    <select id="timeSelect">
+        <option value="0">11AM</option>
+        <option value="1">12PM</option>
+        <option value="2">1PM</option>
+        <option value="3">2PM</option>
+        <option value="4">3PM</option>
+        <option value="5">4PM</option>
+        <option value="6">5PM</option>
+        <option value="7">6PM</option>
+        <option value="8">7PM</option>
+    </select>
+    <label for="eventName">Event Name:</label>
+    <input type="text" id="eventName" placeholder="Enter event name">
+    <button onclick="addEvent()">Add</button>
+</div>
+
+<script>
+    const canvas = document.getElementById('scheduleCanvas');
+    const ctx = canvas.getContext('2d');
+    const tooltip = document.getElementById('tooltip');
+
+    // Dimensions and styles
+    const startX = 80;
+    const startY = 50;
+    const cellWidth = 130;
+    const cellHeight = 60;
+    const timeSlots = ["11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM", "7PM"];
+    const days = ["Time", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+
+    // Colors
+    const headerColor = "#f2f2f2";
+    const borderColor = "#000000";
+    const classColors = {
+        "Maths for Engineers": "#4B0082",
+        "Electrostatics": "#32CD32",
+        "Algorithmics": "#B22222",
+        "Web Programming": "#9370DB",
+        "Microprocessors": "#FFD700"
+    };
+
+    const classes = [];
+
+    // Function to draw rectangles with rounded corners
+    function drawRoundedRect(x, y, width, height, radius) {
+        ctx.beginPath();
+        ctx.moveTo(x + radius, y);
+        ctx.lineTo(x + width - radius, y);
+        ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+        ctx.lineTo(x + width, y + height - radius);
+        ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+        ctx.lineTo(x + radius, y + height);
+        ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+        ctx.lineTo(x, y + radius);
+        ctx.quadraticCurveTo(x, y, x + radius, y);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+    }
+
+    // Draw the headers (days) with rounded corners
+    function drawSchedule() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        days.forEach((day, index) => {
+            ctx.fillStyle = headerColor;
+            ctx.strokeStyle = borderColor;
+            ctx.lineWidth = 2;
+            drawRoundedRect(startX + (cellWidth * index), startY, cellWidth, cellHeight, 10);
+            ctx.fillStyle = "#000";
+            ctx.font = "16px Arial";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText(day, startX + (cellWidth * index) + cellWidth / 2, startY + cellHeight / 2);
+        });
+
+        // Draw the time slots
+        timeSlots.forEach((time, index) => {
+            ctx.fillStyle = headerColor;
+            ctx.fillRect(startX, startY + cellHeight * (index + 1), cellWidth, cellHeight);
+            ctx.strokeStyle = borderColor;
+            ctx.strokeRect(startX, startY + cellHeight * (index + 1), cellWidth, cellHeight);
+            ctx.fillStyle = "#000";
+            ctx.font = "16px Arial";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText(time, startX + cellWidth / 2, startY + cellHeight * (index + 1) + cellHeight / 2);
+        });
+
+        // Draw the classes
+        classes.forEach(classInfo => {
+            drawClass(classInfo.dayIndex, classInfo.timeIndexStart, classInfo.timeIndexEnd, classInfo.className);
+        });
+
+        // Draw dashed borders
+        drawDashedBorders();
+    }
+
+    // Draw dashed borders between time and day cells
+    function drawDashedBorders() {
+        ctx.setLineDash([5, 3]); // Set dashed pattern [5 pixels line, 3 pixels gap]
+        ctx.strokeStyle = "#000"; // Border color
+
+        // Vertical dashed lines
+        for (let i = 1; i <= days.length - 1; i++) {
+            ctx.beginPath();
+            ctx.moveTo(startX + cellWidth * i, startY);
+            ctx.lineTo(startX + cellWidth * i, startY + cellHeight * (timeSlots.length + 1));
+            ctx.stroke();
         }
 
-        function closeModal() {
-            document.getElementById("classModal").style.display = "none";
+        // Horizontal dashed lines
+        for (let i = 1; i <= timeSlots.length; i++) {
+            ctx.beginPath();
+            ctx.moveTo(startX, startY + cellHeight * i);
+            ctx.lineTo(startX + cellWidth * days.length, startY + cellHeight * i);
+            ctx.stroke();
         }
 
-        window.onclick = function (event) {
-            if (event.target == document.getElementById("classModal")) {
-                closeModal();
+        ctx.setLineDash([]); // Reset to solid lines
+    }
+
+    // Draw the class schedule
+    function drawClass(dayIndex, timeIndexStart, timeIndexEnd, className) {
+        const x = startX + (cellWidth * dayIndex);
+        const y = startY + cellHeight * (timeIndexStart + 1);
+        const height = cellHeight * (timeIndexEnd - timeIndexStart);
+
+        ctx.fillStyle = classColors[className] || "#000";
+        ctx.fillRect(x, y, cellWidth, height);
+        ctx.strokeStyle = borderColor;
+        ctx.strokeRect(x, y, cellWidth, height);
+
+        ctx.fillStyle = "#FFF";
+        ctx.font = "14px Arial";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(className, x + cellWidth / 2, y + height / 2);
+    }
+
+    // Draw initial schedule with some example classes
+    function initializeSchedule() {
+        classes.push({ dayIndex: 1, timeIndexStart: 0, timeIndexEnd: 1, className: "Maths for Engineers" });
+        classes.push({ dayIndex: 2, timeIndexStart: 0, timeIndexEnd: 1, className: "Electrostatics" });
+        classes.push({ dayIndex: 4, timeIndexStart: 0, timeIndexEnd: 1, className: "Electrostatics" });
+        classes.push({ dayIndex: 5, timeIndexStart: 0, timeIndexEnd: 1, className: "Maths for Engineers" });
+        classes.push({ dayIndex: 2, timeIndexStart: 4, timeIndexEnd: 5, className: "Algorithmics" });
+        classes.push({ dayIndex: 4, timeIndexStart: 4, timeIndexEnd: 5, className: "Algorithmics" });
+        classes.push({ dayIndex: 2, timeIndexStart: 6, timeIndexEnd: 7, className: "Web Programming" });
+        classes.push({ dayIndex: 4, timeIndexStart: 6, timeIndexEnd: 7, className: "Web Programming" });
+        classes.push({ dayIndex: 5, timeIndexStart: 1, timeIndexEnd: 2, className: "Microprocessors" });
+        drawSchedule();
+    }
+
+    // Open the Add Event Form
+    function openAddEventForm() {
+        document.getElementById('eventForm').style.display = 'block';
+    }
+
+    // Add event to the schedule
+    function addEvent() {
+        const dayIndex = parseInt(document.getElementById('daySelect').value);
+        const timeIndex = parseInt(document.getElementById('timeSelect').value);
+        const eventName = document.getElementById('eventName').value.trim();
+
+        if (eventName) {
+            classes.push({ dayIndex: dayIndex, timeIndexStart: timeIndex, timeIndexEnd: timeIndex + 1, className: eventName });
+            drawSchedule();
+            document.getElementById('eventForm').style.display = 'none';
+            document.getElementById('eventName').value = ''; // Clear the event name input
+        } else {
+            alert('Please enter a valid event name.');
+        }
+    }
+
+    initializeSchedule();
+
+    // Mouse events for interactivity
+    canvas.addEventListener('mousemove', function (e) {
+        const mousePos = getMousePos(canvas, e);
+        let found = false;
+
+        for (const classInfo of classes) {
+            if (isMouseOverClass(mousePos, classInfo)) {
+                tooltip.style.left = e.pageX + 10 + 'px';
+                tooltip.style.top = e.pageY + 10 + 'px';
+                tooltip.style.display = 'block';
+                tooltip.innerHTML = `Class: ${classInfo.className}<br>Day: ${days[classInfo.dayIndex]}`;
+                found = true;
+                break;
             }
         }
-    </script>
-</body>
 
+        if (!found) {
+            tooltip.style.display = 'none';
+        }
+    });
+
+    // Utility functions
+    function getMousePos(canvas, evt) {
+        const rect = canvas.getBoundingClientRect();
+        return {
+            x: evt.clientX - rect.left,
+            y: evt.clientY - rect.top
+        };
+    }
+
+    function isMouseOverClass(mousePos, classInfo) {
+        const x = startX + (cellWidth * classInfo.dayIndex);
+        const y = startY + cellHeight * (classInfo.timeIndexStart + 1);
+        return mousePos.x >= x &&
+            mousePos.x <= x + cellWidth &&
+            mousePos.y >= y &&
+            mousePos.y <= y + (cellHeight * (classInfo.timeIndexEnd - classInfo.timeIndexStart));
+    }
+</script>
+</body>
 </html>
