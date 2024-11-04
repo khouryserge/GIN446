@@ -7,23 +7,63 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/fontawesome.css">
+<link rel="stylesheet" href="assets/css/templatemo-edu-meeting.css">
+<link rel="stylesheet" href="assets/css/owl.css">
+<link rel="stylesheet" href="assets/css/lightbox.css">
 <style>
-html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif; height: 100%; margin: 0;}
 
-
+body {
+    background-color: #000;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
 #cvFormContainer {
     width: 400px;
-    height: 400px;
+ 
     margin: 50px auto;
     padding: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid #131212;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
+    background-color: #1a1a1a;
 }
+
 input[type="text"], input[type="email"], textarea {
     width: 100%;
-    margin: 10px 0;
-    padding: 8px;
-    box-sizing: border-box;
+    margin: 10px ;
+    padding:  8px;
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+}
+
+.header-area {
+    background-color: #333;
+}
+
+.w3-card-4, .w3-card, .w3-container {
+    background-color: #1a1a1a;
+}
+
+.w3-text-grey {
+    color: #bbb !important;
+}
+
+.w3-text-teal {
+    color: #1abc9c !important;
+}
+
+.w3-button.w3-teal {
+    background-color: #1abc9c;
 }
 </style>
 <script>
@@ -39,7 +79,6 @@ function nextStep() {
 }
 
 function generateCV() {
-    // Get form values
     const name = document.getElementById("name").value;
     const address = document.getElementById("address").value;
     const email = document.getElementById("email").value;
@@ -49,7 +88,6 @@ function generateCV() {
     const education = document.getElementById("education").value;
     const profile = document.getElementById("profile").value;
     
-    // Insert values into the CV template
     document.getElementById("cvName").innerText = name;
     document.getElementById("cvAddress").innerText = address;
     document.getElementById("cvEmail").innerText = email;
@@ -57,7 +95,6 @@ function generateCV() {
     document.getElementById("cvProfile").innerText = profile;
     document.getElementById("cvEducation").innerText = education;
 
-    // Insert skills
     const skillsContainer = document.getElementById("cvSkills");
     skillsContainer.innerHTML = "";
     skills.forEach(skill => {
@@ -66,7 +103,6 @@ function generateCV() {
         skillsContainer.appendChild(skillElement);
     });
 
-    // Insert languages
     const languagesContainer = document.getElementById("cvLanguages");
     languagesContainer.innerHTML = "";
     languages.forEach(language => {
@@ -75,26 +111,36 @@ function generateCV() {
         languagesContainer.appendChild(langElement);
     });
 
-    // Show the generated CV
     document.getElementById("formContainer").style.display = "none";
     document.getElementById("cvContainer").style.display = "block";
 }
 </script>
 </head>
-<body class=" w3-white">
-  <div class="w3-top">
-    <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
-      <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
-      <a href="index.html" class="w3-bar-item w3-button w3-theme-l1" style="color: black;">Home</a>
-
-      <a href="MyCV.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white" style="color: black;">About</a>
-<a href="Schedule.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white" style="color: black;">Schedule</a>
-<a href="Form.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white" style="color: black;">Form</a>
-
-     
-    </div>
+<header class="header-area header-sticky">
+  <div class="container">
+      <div class="row">
+          <div class="col-12">
+              <nav class="main-nav">
+                  <ul class="nav">
+                      <li class="scroll-to-section"><a href="index1.html" >Home</a></li>
+                      <li class="scroll-to-section"><a href="Form.html" class="active">Apply Now</a></li>
+                      <li class="has-sub">
+                          <a href="javascript:void(0)">Researches</a>
+                          <ul class="sub-menu">
+                              <li><a href="meeting-details.html">World Wide Web</a></li>
+                              <li><a href="ArabicPage.html">تاريخ شبكة الويب العالمية</a></li>
+                          </ul>
+                      </li>
+                      <li><a href="MyCV.html">About me</a></li>
+                      <li><a href="Schedule.html">Schedule</a></li>
+                      <li><a href="Wordle.html">Game</a></li>
+                  </ul>
+                  <a class='menu-trigger'><span>Menu</span></a>
+              </nav>
+          </div>
+      </div>
   </div>
-<!-- Form Container -->
+</header>
 <div id="formContainer" class="w3-content w3-margin-top" style="max-width:700px;">
   <div id="cvFormContainer" class="w3-white w3-text-grey w3-card-4">
     <div class="w3-container w3-padding">
@@ -136,14 +182,11 @@ function generateCV() {
     </div>
   </div>
 </div>
-
-<!-- Generated CV Container -->
-<div id="cvContainer" class="w3-content w3-margin-top" style="max-width:2000px; display:none;padding-top: 60px;">
+<div id="cvContainer" class="w3-content w3-margin-top" style="max-width:2000px; display:none;padding-top: 100px;">
   <div class="w3-row-padding">
     <div class="w3-third">
       <div class="w3-white w3-text-grey w3-card-4">
         <div class="w3-display-container">
-          
           <div class="w3-display-bottomleft w3-container w3-text-white">
             <h2 id="cvName">Your Name</h2>
           </div>
@@ -178,6 +221,5 @@ function generateCV() {
     </div>
   </div>
 </div>
-
 </body>
 </html>

@@ -1,76 +1,141 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <title>موقعي الشخصي</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-        html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
-        .w3-sidebar {
-            z-index: 3;
-            width: 250px;
-            top: 43px;
-            bottom: 0;
-            height: inherit;
-        }
-        /* Image Container Styling */
-        .image-container {
-            position: fixed;
-            right: 100px;
-            top: 100px;
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
-        }
-        /* Main Content Styling */
-        body {
-    display: flex;
-    justify-content: flex-end; /* Push all content to the right side */
-    margin: 0; /* Remove default margins */
-}
+<html lang="AR">
 
-        p, h1, h2, h3, h4, h5, h6, ul, li {
-            text-align: right; /* Ensure text and lists are right-aligned */
-        }
-    
-    </style>
-</head>
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Template Mo">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <title>World Wide Web(Arabic)</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-edu-meeting.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/lightbox.css">
+<!--
+
+TemplateMo 569 Edu Meeting
+
+https://templatemo.com/tm-569-edu-meeting
+
+-->
+  </head>
 
 <body>
+    <style>
+        body {
+          text-align: right;
+          direction: rtl;
+        }
+      </style>
    
-    <div class="image-container">
-        <img src="image1.jpg" alt="صورة ١" width="300" height="280">
-        <img src="image3.jpg" alt="صورة ٣" width="300" height="280">
-    </div>
 
-    <!-- Navbar -->
-    <div class="w3-top">
-        <div class="w3-bar w3-theme w3-top w3-right-align w3-large">
-            <a href="javascript:void(0)" class="w3-bar-item w3-button w3-left w3-hide-large w3-hover-white w3-large w3-theme-l1" onclick="w3_open()">
-                <i class="fa fa-bars"></i>
-            </a>
-            <a href="index.html" class="w3-bar-item w3-button w3-theme-l1">Home</a>
-            <a href="MyCV.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">About</a>
-            <a href="Schedule.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Schedule</a>
-            <a href="Form.html" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Form</a>
+  <!-- Sub Header -->
+  <div class="sub-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-sm-8">
+          <div class="left-content">
+            <p>This is an educational <em>HTML CSS</em> template by TemplateMo website.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-4">
+          <div class="right-icons">
+            <ul>
+              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fa fa-behance"></i></a></li>
+              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                  
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li class="scroll-to-section"><a href="Wordle.html" >Game</a></li>
+                     
+                        <li class="scroll-to-section"><a href="Schedule.html">Schedule</a></li>
+                        <li><a href="MyCV.html">About me</a></li>
+                        <li class="has-sub">
+                            <a href="javascript:void(0)" class="active">Researches</a>
+                            <ul class="sub-menu">
+                                <li><a href="meeting-details.html">World Wide Web</a></li>
+                                <li><a href="ArabicPage.html">تاريخ شبكة الويب العالمية   </a></li>
+                            </ul>
+                        </li>
+                        
+                        <li ><a href="Form.html">Apply now</a></li> 
+                        <li ><a href="index1.html">Home</a></li> 
+                    </ul>        
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
         </div>
     </div>
+</header>
+  <!-- ***** Header Area End ***** -->
 
-   
-    <!-- Overlay effect when opening sidebar on small screens -->
-    <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="إغلاق القائمة" id="myOverlay"></div>
+  <section class="heading-page header-text" id="top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h6>Get all details</h6>
+          <h2>Online Teaching and Learning Tools</h2>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <section class="meetings-page" id="meetings">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="meeting-single-item">
+                <div class="thumb">
+                  <div class="price">
+                    
+                  </div>
+                  <div class="date">
+                   
+                  </div>
+                  <a href="meeting-details.html"><img src="image3.jpg" alt=""></a>
+                </div>
+                <div class="down-content">
+                  <a href="meeting-details.html"><h4>تاريخ شبكة الويب العالمية  </h4></a>
+                 
+                  <p class="description">
     <!-- Main content -->
     <div class="w3-main" style="margin-right:250px">
         <div class="w3-row w3-padding-64">
             <div class="w3-twothird w3-container">
-                <h1 class="w3-text-teal">مرحبًا بكم في موقعي</h1>
+                
                 <section id="history">
-                    <h2>تاريخ شبكة الويب العالمية   </h2>
+               
             
                     <h3>1. نشأة شبكة الويب العالمية (1989-1993)</h3>
                     <p>تم اختراع شبكة الويب العالمية بواسطة <strong>تيم بيرنرز لي</strong> في عام 1989 أثناء عمله في CERN. كانت رؤيته إنشاء نظام يسمح للباحثين بمشاركة المعلومات بسهولة. وقد طور ثلاث تقنيات أساسية:</p>

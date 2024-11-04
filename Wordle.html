@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wordle Clone</title>
+        <!-- Additional CSS Files -->
+        <link rel="stylesheet" href="assets/css/fontawesome.css">
+        <link rel="stylesheet" href="assets/css/templatemo-edu-meeting.css">
+        <link rel="stylesheet" href="assets/css/owl.css">
+        <link rel="stylesheet" href="assets/css/lightbox.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #000000;
+        }
+        #title {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color:white;
+            padding-top: 160px;
+        }
+        #game {
+            display: grid;
+            grid-template-columns: repeat(5, 50px);
+            grid-gap: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .tile {
+        width: 50px;
+        height: 50px;
+        border: 2px solid #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5em;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: white; /* White letters on tiles */
+    }
+        .correct {
+            background-color: #6aaa64;
+            color: white;
+        }
+        .present {
+            background-color: #c9b458;
+            color: white;
+        }
+        .absent {
+            background-color: #787c7e;
+            color: white;
+        }
+        #keyboard {
+            display: grid;
+            grid-template-columns: repeat(12, 40px);
+            grid-gap: 5px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .key {
+        width: 40px;
+        height: 40px;
+        border: 1px solid #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.2em;
+        cursor: pointer;
+        user-select: none;
+        color: white; /* White letters on keyboard keys */
+    }
+        .row-spacer {
+            grid-column: span 12;
+            height: 10px;
+        }
+        #guess-button {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            margin: 5px;
+        }
+        #delete-button {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2em;
+            cursor: pointer;
+            user-select: none;
+            position: absolute;
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+<body>
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li class="scroll-to-section"><a href="index1.html" >Home</a></li>
+                         
+                            <li class="scroll-to-section"><a href="Form.html">Apply Now</a></li>
+                            <li class="has-sub">
+                                <a href="javascript:void(0)">Researches</a>
+                                <ul class="sub-menu">
+                                    <li><a href="meeting-details.html">World Wide Web</a></li>
+                                    <li><a href="ArabicPage.html">تاريخ شبكة الويب العالمية   </a></li>
+                                </ul>
+                            </li>
+                            <li><a href="MyCV.html">About me</a></li>
+                            <li ><a href="Schedule.html">Schedule</a></li> 
+                            <li ><a href="Wordle.html"class="active">Game</a></li> 
+                        </ul>        
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div id="title">WORDLE </div>
+    <div id="game"></div>
+    <div id="keyboard">
+        <button id="delete-button">⌫</button>
+    </div>
+    <button id="guess-button">Guess</button>
+    <script>
+        const words = ["apple", "grape", "peach", "berry", "mango"];
+        const targetWord = words[Math.floor(Math.random() * words.length)];
+        let currentGuess = "";
+        let rowIndex = 0;
+
+        const gameElement = document.getElementById('game');
+        for (let i = 0; i < 30; i++) {
+            const tile = document.createElement('div');
+            tile.classList.add('tile');
+            gameElement.appendChild(tile);
+        }
+
+        const keyboardElement = document.getElementById('keyboard');
+        const keysLayout = [
+            "QWERTYUIOP",
+            "ASDFGHJKL",
+            "ZXCVBNM"
+        ];
+
+        keysLayout.forEach((row, rowIndex) => {
+            if (rowIndex === 1) {
+                const spacer = document.createElement('div');
+                spacer.style.gridColumn = 'span 1';
+                keyboardElement.appendChild(spacer);
+            } else if (rowIndex === 2) {
+                const spacer = document.createElement('div');
+                spacer.style.gridColumn = 'span 2';
+                keyboardElement.appendChild(spacer);
+            }
+            row.split("").forEach(key => {
+                const keyElement = document.createElement('div');
+                keyElement.classList.add('key');
+                keyElement.textContent = key;
+                keyElement.addEventListener('click', () => handleKeyPress(key));
+                keyboardElement.appendChild(keyElement);
+            });
+            const rowSpacer = document.createElement('div');
+            rowSpacer.classList.add('row-spacer');
+            keyboardElement.appendChild(rowSpacer);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Backspace" && currentGuess.length > 0) {
+                currentGuess = currentGuess.slice(0, -1);
+                updateTiles();
+            } else if (/^[a-zA-Z]$/.test(e.key) && currentGuess.length < 5) {
+                handleKeyPress(e.key.toLowerCase());
+            } else if (e.key === "Enter" && currentGuess.length === 5) {
+                checkGuess();
+            }
+        });
+
+        document.getElementById('guess-button').addEventListener('click', () => {
+            if (currentGuess.length === 5) {
+                checkGuess();
+            }
+        });
+
+        document.getElementById('delete-button').addEventListener('click', () => {
+            if (currentGuess.length > 0) {
+                currentGuess = currentGuess.slice(0, -1);
+                updateTiles();
+            }
+        });
+
+        function handleKeyPress(key) {
+            if (currentGuess.length < 5) {
+                currentGuess += key;
+                updateTiles();
+            }
+        }
+
+        function updateTiles() {
+            const tiles = document.querySelectorAll('.tile');
+            for (let i = 0; i < 5; i++) {
+                tiles[rowIndex * 5 + i].textContent = currentGuess[i] || "";
+            }
+        }
+
+        function checkGuess() {
+    const tiles = document.querySelectorAll('.tile');
+    const targetWordArray = targetWord.split("");
+    const currentGuessArray = currentGuess.split("");
+    const targetLetterCount = {};
+
+    // Count occurrences of each letter in target word
+    targetWordArray.forEach(letter => {
+        targetLetterCount[letter] = (targetLetterCount[letter] || 0) + 1;
+    });
+
+    // First pass: mark correct letters
+    for (let i = 0; i < 5; i++) {
+        const letter = currentGuessArray[i];
+        const tile = tiles[rowIndex * 5 + i];
+
+        if (letter === targetWordArray[i]) {
+            tile.classList.add('correct');
+            targetLetterCount[letter]--;
+            currentGuessArray[i] = null; // Mark as used
+        }
+    }
+
+    // Second pass: mark present letters
+    for (let i = 0; i < 5; i++) {
+        const letter = currentGuessArray[i];
+        const tile = tiles[rowIndex * 5 + i];
+
+        if (letter && targetLetterCount[letter] > 0) {
+            tile.classList.add('present');
+            targetLetterCount[letter]--;
+        } else if (letter) {
+            tile.classList.add('absent');
+        }
+    }
+
+    // Check if the player has guessed correctly
+    if (currentGuess === targetWord) {
+        alert("Congratulations! You've guessed the word!");
+    } else if (rowIndex === 5) {
+        alert(`Game over! The word was: ${targetWord}`);
+    } else {
+        rowIndex++;
+        currentGuess = "";
+    }
+}
+
+    </script>
+</body>
+</html>
